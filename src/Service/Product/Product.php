@@ -29,13 +29,24 @@ class Product
      */
     public function getAll(string $sortType): array
     {
+        switch($sortType){
+            case 'price':
+                $strategy = new Sorter(new SorterByPrice());
+                break;
+
+            case 'name':
+                $strategy = new Sorter(new SorterByName());
+                break;
+
+            default:
+                $strategy = new Sorter(new SorterByName());
+        }
+
         $productList = $this->getProductRepository()->fetchAll();
 
-        // Применить паттерн Стратегия
-        // $sortType === 'price'; // Сортировка по цене
-        // $sortType === 'name'; // Сортировка по имени
 
-        return $productList;
+        // в примере здесь вместо $strategy почему-то стояло $productSorter =)
+        return $strategy->sort($productList);
     }
 
     /**
