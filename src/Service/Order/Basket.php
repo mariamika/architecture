@@ -9,6 +9,8 @@ use Service\Billing\Card;
 use Service\Billing\IBilling;
 use Service\Communication\Email;
 use Service\Communication\ICommunication;
+use Service\Communication\Sms;
+use Service\Communication\SmsAPI;
 use Service\Discount\IDiscount;
 use Service\Discount\NullObject;
 use Service\User\ISecurity;
@@ -86,11 +88,16 @@ class Basket
         (new BasketBuilder())
             ->setBilling(new Card())
             ->setDiscount(new NullObject())
-            ->setCommunication(new Email())
+            ->setCommunication(new Sms())
             ->setSecurity(new Security($this->session))
             ->setProducts($this->getProductsInfo())
             ->builder()
             ->checkoutProcess();
+
+        /**
+         * Как вариант реализации паттерна Adapter, мы можем в логику формирования корзины вместо new Email()
+         * передавать new Sms()
+         */
     }
 
     /**

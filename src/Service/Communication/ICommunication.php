@@ -11,6 +11,7 @@ interface ICommunication
 {
     /**
      * Точка входа по формированию и отправке сообщения пользователю
+     * Целевой интерфейс
      *
      * @param Model\Entity\User $user
      * @param string $templateName

@@ -27,6 +27,16 @@ class User
     private $passwordHash;
 
     /**
+     * @var string
+     */
+    private $email;
+
+    /**
+     * @var int
+     */
+    private $phone;
+
+    /**
      * @var Role
      */
     private $role;
@@ -36,14 +46,18 @@ class User
      * @param string $name
      * @param string $login
      * @param string $password
+     * @param string $email
+     * @param int $phone
      * @param Role $role
      */
-    public function __construct(int $id, string $name, string $login, string $password, Role $role)
+    public function __construct(int $id, string $name, string $login, string $password, string $email, int $phone, Role $role)
     {
         $this->id = $id;
         $this->name = $name;
         $this->login = $login;
         $this->passwordHash = $password;
+        $this->email = $email;
+        $this->phone = $phone;
         $this->role = $role;
     }
 
@@ -77,6 +91,22 @@ class User
     public function getPasswordHash(): string
     {
         return $this->passwordHash;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPhone(): int
+    {
+        return $this->phone;
     }
 
     /**

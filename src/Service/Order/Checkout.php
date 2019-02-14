@@ -69,6 +69,6 @@ class Checkout
         $this->billing->pay($totalPrice);
 
         $user = $this->security->getUser();
-        $this->communication->process($user, 'checkout_template');
+        $this->communication->process($user, 'Оформление заказа.');
     }
 }
